@@ -2,6 +2,7 @@
 import DataTable from '@/components/DataTable.vue';
 import FilterDropdown from '@/components/FilterDropdown.vue';
 import FilterRadio from '@/components/FilterRadio.vue';
+import Paginate from '@/components/Paginate.vue';
 import SearchForm from '@/components/SearchForm.vue';
 import { useStore } from '@/stores/amortizations';
 import type Amortizations from '@/types/amortizations';
@@ -12,9 +13,15 @@ const items: Array<Amortizations> = store.items;
 const searchFilter = ref('');
 const radioFilter = ref('');
 const checkboxFilter = ref([] as string[]);
+const page = ref(1);
+const pages = Math.ceil(items.length / 100);
+
 
 const filteredItems = computed(() => {
+  const initialPage = (page.value * 100) - 100;
+  const finalPage = (page.value * 100);
   let amortizations = items;
+  amortizations = amortizations.slice(initialPage, finalPage);
 
   switch (radioFilter.value) {
     case 'today':
@@ -35,11 +42,14 @@ const filteredItems = computed(() => {
     amortizations = amortizations.filter(item => 
       item.amount === Number(searchFilter.value)
       || item.project_id === Number(searchFilter.value)
+      || item.schedule_date.includes(searchFilter.value)
     );
   }
 
   return amortizations
 });
+
+
 
 const handleSearch = (search: string) => {
   searchFilter.value = search;
@@ -60,6 +70,10 @@ const handleCheckboxFilter = (filter: string) => {
 
   checkboxFilter.value = updatedCheckboxFilter;
 };
+
+const handlePaginate = (paginate: number) => {
+  page.value = paginate;
+};
 </script>
 
 <template>
@@ -72,7 +86,12 @@ const handleCheckboxFilter = (filter: string) => {
           <FilterDropdown :items="items" @filter="handleCheckboxFilter" />
         </div>
       </div>
+      <div class="mb-2 text-center font-medium text-gray-900">
+          Current Page: {{ page }}
+      </div>
+      <Paginate :pages="pages" :current-page="page" @paginate="handlePaginate" />
       <DataTable :items="filteredItems" />
+      <Paginate :pages="pages" :current-page="page" @paginate="handlePaginate" />
     </div>
   </main>
 </template>

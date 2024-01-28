@@ -13,7 +13,6 @@ defineProps({
     <table class="w-full">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50">
             <tr>
-                <th class="px-4 py-3">ID</th>
                 <th class="px-4 py-3">Schedule Date</th>
                 <th class="px-4 py-3">State</th>
                 <th class="px-4 py-3">Amount</th>
@@ -22,9 +21,6 @@ defineProps({
         </thead>
         <tbody>
             <tr v-for="(item, index) in items" :key="index" class="border-b">
-                <td class="px-4 py-3 font-medium text-gray-900 text-center">
-                    {{ index + 1 }}
-                </td>
                 <td class="px-4 py-3 font-medium text-gray-900 text-center">
                     {{ item.schedule_date }}
                 </td>
