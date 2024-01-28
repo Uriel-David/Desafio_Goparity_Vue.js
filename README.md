@@ -1,6 +1,9 @@
 # Code_Challenge_Goparity
 
-This template should help get you started developing with Vue 3 in Vite.
+I chose to create a Vue 3 project with Tailwind CSS and TypeScript as indicated in the challenge.
+Basically the project uses Pinia to store the amortization data to optimize the data in the application.
+In addition, I created a single page that receives the HomeView, within it we implement the necessary components to display the amortization data.
+I tried to simplify the form logic but bring out the main filtering points.
 
 ## Recommended IDE Setup
 
