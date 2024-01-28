@@ -22,11 +22,21 @@ defineProps({
         </thead>
         <tbody>
             <tr v-for="(item, index) in items" :key="index" class="border-b">
-                <td class="px-4 py-3 font-medium text-gray-900">{{ index }}</td>
-                <td class="px-4 py-3 font-medium text-gray-900">{{ item.schedule_date }}</td>
-                <td class="px-4 py-3 font-medium text-gray-900">{{ item.state }}</td>
-                <td class="px-4 py-3 font-medium text-gray-900">{{ item.amount }}</td>
-                <td class="px-4 py-3 font-medium text-gray-900">{{ item.project_id }}</td>
+                <td class="px-4 py-3 font-medium text-gray-900 text-center">
+                    {{ index + 1 }}
+                </td>
+                <td class="px-4 py-3 font-medium text-gray-900 text-center">
+                    {{ item.schedule_date }}
+                </td>
+                <td class="px-4 py-3 font-medium text-gray-900 text-center">
+                    {{ item.state }}
+                </td>
+                <td class="px-4 py-3 font-medium text-gray-900 text-center">
+                    {{ item.amount }}
+                </td>
+                <td class="px-4 py-3 font-medium text-gray-900 text-center">
+                    {{ item.project_id }}
+                </td>
             </tr>
         </tbody>
     </table>
